@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block top-section %}
+<section class="page-top-section set-bg" data-setbg="/media/theme/img/header-bg/2.jpg">
+    <div class="container">
+        <h2>{% trans "Sign Out" %}</h2>
+    </div>
+</section>
+{% endblock top-section %}
+
+{% block content %}
+<div class="row">
+<p class="mx-auto">{% trans 'Are you sure you want to sign out?' %}</p>
+</div>
+<div class="row">
+<form method="post" class="mx-auto" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <button type="submit">{% trans 'Sign Out' %}</button>
+</form>
+</div>
+
+{% endblock %}

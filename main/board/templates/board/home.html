@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block top-section %}
+<section class="hero-section">
+    <div class="hero-slider owl-carousel">
+        <div class="hero-item set-bg" data-setbg="/media/theme/img/slider/1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <h2>Enter the Battle</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+                        <a href="#" class="site-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-item set-bg" data-setbg="/media/theme/img/slider/2.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <h2>Enter the Battle</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
+                        <a href="#" class="site-btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock top-section %}
+
+{% block content %}
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 blog-posts">
+					<div class="blog-post featured-post">
+						<img src="/media/theme/img/blog/1.jpg" alt="">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Morbi id dictum quam, ut commodo lorem. In at nisi nec arcu porttitor aliquet vitae at dui. </p>
+					</div>
+					<div class="row">
+						{% for post in posts %}
+						<div class="col-md-6">
+							<div class="blog-post">
+								{% if post.images.0 %}
+								<img src="{{ post.images.0.path }}" alt="{{ post.images.0.alt }}">
+								{% else %}
+								<img src="/media/theme/img/blog/5.jpg" alt="">
+								{% endif %}
+								<div class="post-date">{{ post.created_at|date:'d M, Y' }}</div>
+								<h4>{{ post.title }}</h4>
+								<div class="post-metas">
+									<div class="post-meta">{{ post.user.username }}</div>
+									<div class="post-meta"><a href="#">{{ post.category.name }}</a></div>
+									<div class="post-meta">{{ post.message_set.count|is_plural:"отклик,отклика,откликов" }}</div>
+								</div>
+								<p>{{ post.content|truncatechars:150 }}</p>
+								<a href="{{ post.get_absolute_url }}" class="read-more">Читать</a>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-lg-4 sidebar">
+					<div class="sb-widget">
+						<form class="sb-search">
+							<input type="text" placeholder="Search">
+						</form>
+					</div>
+					<div class="sb-widget">
+						<h2 class="sb-title">Категории</h2>
+						<ul class="sb-cata-list">
+							{% for category in categories %}
+							<li><a href="">{{ category.name }}<span>{{ category.post_set.count }}</span></a></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="sb-widget">
+						<h2 class="sb-title">Популярные объявления</h2>
+						<div class="latest-news-widget">
+							{% for post in popular_posts %}
+							<div class="ln-item">
+								{% if post.images.0 %}
+								<img src="{{ post.images.0.path }}" alt="{{ post.images.0.alt }}">
+								{% else %}
+								<img src="/media/theme/img/blog/5.jpg" alt="">
+								{% endif %}
+								<div class="ln-text">
+									<div class="ln-date">{{ post.created_at|date:'d M, Y' }}</div>
+									<h6>{{ post.title }}</h6>
+									<div class="ln-metas">
+										<div class="ln-meta">{{ post.user.username }}</div>
+										<div class="ln-meta"><a href="{{ post.get_absolute_url }}">{{ post.category.name }}</a></div>
+										<div class="ln-meta">{{ post.message_set.count|is_plural:"отклик,отклика,откликов" }}</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="sb-widget">
+						<a href="#" class="add">
+							<img src="/media/theme/img/add-2.jpg" alt="">
+						</a>
+					</div>
+					<div class="sb-widget">
+						<h2 class="sb-title">Самые активные авторы</h2>
+						<div class="latest-comments-widget">
+							{% for user in popular_users %}
+							<div class="lc-item">
+								<img src="/media/theme/img/author-thumbs/1.jpg" alt="">
+								<div class="lc-text">
+									<h6>{{ user.username }}</h6>
+									<div class="lc-date">{{ user.post_set.count|is_plural:"объявление,объявления,объявлений" }}</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock content %}

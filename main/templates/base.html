@@ -1,0 +1,177 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+<head>
+	<title>!!!!!!!! - {% block head_title %}{% endblock head_title %}</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="TheQuest Gaming Magazine Template">
+	<meta name="keywords" content="gaming, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Favicon -->
+	<link href="/media/theme/img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google font -->
+<!--	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">-->
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static '/css/magnific-popup.css' %}"/>
+	<link rel="stylesheet" href="{% static '/css/owl.carousel.min.css' %}"/>
+	<link rel="stylesheet" href="{% static '/css/animate.css' %}"/>
+	<link rel="stylesheet" href="{% static '/css/slicknav.min.css' %}"/>
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="{% static '/css/style.css' %}"/>
+
+    {% block style %}
+    {% endblock style %}
+  </head>
+
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<a href="{% url 'home' %}" class="site-logo">
+			<img src="/media/theme/img/logo.png" alt="logo">
+		</a>
+		<ul class="main-menu">
+			<li><a href="{% url 'home' %}">Главная</a></li>
+			<li><a href="characters.html">Объявления</a></li>
+			<li><a href="game.html">Категории</a></li>
+			{% if request.user.is_authenticated %}
+			<li><a href="{% url 'account_logout' %}" class="text-success">Аккаунт</a></li>
+			{% else %}
+			<li><a href="{% url 'account_signup' %}" class="text-warning">Регистрация</a></li>
+			<li><a href="{% url 'account_login' %}" class="text-success">Вход</a></li>
+			{% endif %}
+		</ul>
+	</header>
+	{% block body %}
+
+	{% block top-section %}
+    {% endblock top-section %}
+
+	<section class="blog-section spad">
+		<div class="container mt-5">
+		{% block content %}
+		{% endblock content %}
+		</div>
+	</section>
+
+	{% block extra_body %}
+	{% endblock extra_body %}
+
+	{% endblock body %}
+	<!-- Footer section -->
+	<div class="footer-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="footer-widget">
+						<div class="about-widget">
+							<img src="/media/theme/img/logo.png" alt="">
+							<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo. Morbi id dictum quam, ut commodo.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-sm-6">
+					<div class="footer-widget">
+						<h2 class="fw-title">Usfull Links</h2>
+						<ul>
+							<li><a href="">Games</a></li>
+							<li><a href="">testimonials</a></li>
+							<li><a href="">Reviews</a></li>
+							<li><a href="">Characters</a></li>
+							<li><a href="">Latest news</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-sm-6">
+					<div class="footer-widget">
+						<h2 class="fw-title">Services</h2>
+						<ul>
+							<li><a href="">About us</a></li>
+							<li><a href="">Services</a></li>
+							<li><a href="">Become a writer</a></li>
+							<li><a href="">Jobs</a></li>
+							<li><a href="">FAQ</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-sm-6">
+					<div class="footer-widget">
+						<h2 class="fw-title">Careeres</h2>
+						<ul>
+							<li><a href="">Donate</a></li>
+							<li><a href="">Services</a></li>
+							<li><a href="">Subscriptions</a></li>
+							<li><a href="">Careers</a></li>
+							<li><a href="">Our team</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget fw-latest-post">
+						<h2 class="fw-title">Usfull Links</h2>
+						<div class="latest-news-widget">
+							<div class="ln-item">
+								<div class="ln-text">
+									<div class="ln-date">April 1, 2019</div>
+									<h6>10 Amazing new games</h6>
+									<div class="ln-metas">
+										<div class="ln-meta">By Admin</div>
+										<div class="ln-meta">in <a href="#">Games</a></div>
+										<div class="ln-meta">3 Comments</div>
+									</div>
+								</div>
+							</div>
+							<div class="ln-item">
+								<div class="ln-text">
+									<div class="ln-date">April 1, 2019</div>
+									<h6>10 Amazing new games</h6>
+									<div class="ln-metas">
+										<div class="ln-meta">By Admin</div>
+										<div class="ln-meta">in <a href="#">Games</a></div>
+										<div class="ln-meta">3 Comments</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright"><a href=""><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+		</div>
+		<div class="social-links-warp">
+			<div class="container">
+				<div class="social-links">
+					<a href="#"><i class="fa fa-instagram"></i><span>instagram</span></a>
+					<a href="#"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+					<a href="#"><i class="fa fa-facebook"></i><span>facebook</span></a>
+					<a href="#"><i class="fa fa-twitter"></i><span>twitter</span></a>
+					<a href="#"><i class="fa fa-youtube"></i><span>youtube</span></a>
+					<a href="#"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer section end -->
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static '/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static '/js/bootstrap.min.js' %}"></script>
+	<script src="{% static '/js/jquery.slicknav.js' %}"></script>
+	<script src="{% static '/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static '/js/circle-progress.min.js' %}"></script>
+	<script src="{% static '/js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static '/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block top-section %}
+<section class="page-top-section set-bg" data-setbg="/media/theme/img/header-bg/2.jpg">
+    <div class="container">
+        <h2>{% trans "Sign Up" %}</h2>
+    </div>
+</section>
+{% endblock top-section %}
+
+{% block content %}
+<div class="row">
+<p class="mx-auto">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+</div>
+<div class="row">
+<form class="signup mx-auto" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+</div>
+{% endblock %}

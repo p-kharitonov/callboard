@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Up Closed" %}{% endblock %}
+
+{% block top-section %}
+<section class="page-top-section set-bg" data-setbg="/media/theme/img/header-bg/2.jpg">
+    <div class="container">
+        <h2>{% trans "Sign Up Closed" %}</h2>
+    </div>
+</section>
+{% endblock top-section %}
+
+{% block content %}
+<div class="row">
+<p class="mx-auto">{% trans "We are sorry, but the sign up is currently closed." %}</p>
+</div>
+{% endblock %}
